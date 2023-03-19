@@ -7,20 +7,39 @@
 
 import SwiftUI
 
+enum Category {
+    case calculator, history
+}
+
 struct ContentView: View {
+    @ObservedObject var viewModel: CalculatorViewModel
+    @State var selectedCategory: Category = .calculator
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            VStack {
+                Picker("View Type", selection: $selectedCategory) {
+                    Text("Calculator").tag(Category.calculator)
+                    Text("History").tag(Category.history)
+                }
+                .pickerStyle(.segmented)
+                
+                switch selectedCategory {
+                case .calculator: CalculatorView(viewModel: viewModel)
+                case .history: HistoryView()
+                }
+                
+                Spacer()
+            }
+            .padding()
+            .navigationTitle("Body Mass Index")
         }
-        .padding()
+        
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: CalculatorViewModel())
     }
 }
