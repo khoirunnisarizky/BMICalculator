@@ -23,16 +23,15 @@ struct ContentView: View {
                     Text("Calculator").tag(Category.calculator)
                     Text("History").tag(Category.history)
                 }
+                .padding()
                 .pickerStyle(.segmented)
                 
                 switch selectedCategory {
                 case .calculator: CalculatorView(viewModel: viewModel)
                 case .history: HistoryView(viewModel: viewModel)
                 }
-                
-                Spacer()
             }
-            .padding()
+            
             .navigationTitle("Body Mass Index")
         }
         

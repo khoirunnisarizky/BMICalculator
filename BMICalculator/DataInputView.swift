@@ -15,15 +15,13 @@ struct DataInputView: View {
     @State var bmiColor: Color
     
     var body: some View {
-        
-        VStack {
-            Text("\(date)").foregroundColor(.gray)
+        VStack(alignment: .leading) {
+            Text("\(date.formatted(date: .abbreviated, time: .shortened))").foregroundColor(.gray)
             HStack{
                 Text(String(format: "%.2f", bmiValue)).font(.largeTitle).fontWeight(.bold)
                 Spacer()
                 Text("\(bmiStatus)").foregroundColor(bmiColor)
             }
-            .padding()
         }
     }
 }

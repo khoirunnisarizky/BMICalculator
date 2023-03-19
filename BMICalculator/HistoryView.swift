@@ -15,12 +15,6 @@ struct HistoryView: View {
         List(viewModel.bmiHistories, id: \.self) { bmiData in
             DataInputView(date: bmiData.date, bmiValue: bmiData.bmiValue, bmiStatus: bmiData.bmiStatus, bmiColor: bmiData.bmiColor)
         }
-        .listStyle(.automatic)
+        //.scrollContentBackground(.hidden)
     }
 }
-
-//struct HistoryView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HistoryView()
-//    }
-//}
