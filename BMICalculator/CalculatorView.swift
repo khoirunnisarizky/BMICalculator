@@ -29,9 +29,7 @@ struct CalculatorView: View {
                 in: Double(30) ... Double(120),
                 onEditingChanged: { editing in
                     isEditing = editing
-                    viewModel.getBMIValue(weight: weightValue, height: heightValue)
-                    viewModel.getBMIStatus()
-                    viewModel.getStatusColor()
+                    viewModel.getBMIInfo(weight: weightValue, height: heightValue)
                 }
             )
             .padding()
@@ -47,9 +45,7 @@ struct CalculatorView: View {
                 in: Double(120) ... Double(200),
                 onEditingChanged: { editing in
                     isEditing = editing
-                    viewModel.getBMIValue(weight: weightValue, height: heightValue)
-                    viewModel.getBMIStatus()
-                    viewModel.getStatusColor()
+                    viewModel.getBMIInfo(weight: weightValue, height: heightValue)
                 }
             )
             .padding()
@@ -72,6 +68,7 @@ struct CalculatorView: View {
                     Spacer()
                     Button("Save to  history") {
                         print("saved")
+                        viewModel.bmiHistories.append(BMIModel(date: Date(), bmiValue: viewModel.bmiValue, bmiStatus: viewModel.bmiStatus, bmiColor: viewModel.bmiColor))
                     }
                     .padding(.all)
                     .frame(width: reader.size.width - 20)

@@ -12,37 +12,25 @@ class CalculatorViewModel: ObservableObject {
     @Published var bmiValue: Double = 0.0
     @Published var bmiStatus: String = "No Data"
     @Published var bmiColor: Color = .black
+    @Published var bmiHistories: [BMIModel] = []
     
-    func getBMIValue(weight: Double, height: Double) {
+    func getBMIInfo(weight: Double, height: Double) {
         bmiValue = (weight * 10000 / (height * height ))
-    }
-    
-    func getBMIStatus() {
         switch bmiValue {
         case 0 ..< 18.5:
             bmiStatus = "Underweight"
-        case 18.5 ..< 25:
-            bmiStatus = "Normal"
-        case 25 ..< 30:
-            bmiStatus = "Overweight"
-        case 30 ..< 200:
-            bmiStatus = "Obese"
-        default:
-            bmiStatus = "Abnormal"
-        }
-    }
-    
-    func getStatusColor() {
-        switch bmiValue {
-        case 0 ..< 18.5:
             bmiColor = .blue
         case 18.5 ..< 25:
+            bmiStatus = "Normal"
             bmiColor = .green
         case 25 ..< 30:
+            bmiStatus = "Overweight"
             bmiColor = .orange
         case 30 ..< 200:
+            bmiStatus = "Obese"
             bmiColor = .red
         default:
+            bmiStatus = "Abnormal"
             bmiColor = .black
         }
     }

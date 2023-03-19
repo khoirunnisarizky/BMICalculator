@@ -14,6 +14,7 @@ enum Category {
 struct ContentView: View {
     @ObservedObject var viewModel: CalculatorViewModel
     @State var selectedCategory: Category = .calculator
+    @State var bmiHistories: [BMIModel] = []
     
     var body: some View {
         NavigationView {
@@ -26,7 +27,7 @@ struct ContentView: View {
                 
                 switch selectedCategory {
                 case .calculator: CalculatorView(viewModel: viewModel)
-                case .history: HistoryView()
+                case .history: HistoryView(viewModel: viewModel)
                 }
                 
                 Spacer()

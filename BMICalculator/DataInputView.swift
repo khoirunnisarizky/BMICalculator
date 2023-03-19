@@ -9,34 +9,22 @@ import SwiftUI
 
 struct DataInputView: View {
     
-    @ObservedObject var viewModel: CalculatorViewModel
-    
-    @State var title: String
-    @State var value: Double
-    @State var isEditing: Bool = false
-    @State var minValue: Int
-    @State var maxValue: Int
-    @Binding var weightValue: Double
-    @Binding var heightValue: Double
+    @State var date: Date
+    @State var bmiValue: Double
+    @State var bmiStatus: String
+    @State var bmiColor: Color
     
     var body: some View {
-        HStack{
-            Text(title).foregroundColor(.gray)
-            Spacer()
-            Text(String(format: "%.2f", value)).font(.largeTitle).fontWeight(.bold)
-        }
-        .padding()
-        Slider(
-            value: $value,
-            in: Double(minValue) ... Double(maxValue),
-            onEditingChanged: { editing in
-                isEditing = editing
-                viewModel.getBMIValue(weight: weightValue, height: heightValue)
-                viewModel.getBMIStatus()
-                viewModel.getStatusColor()
+        
+        VStack {
+            Text("\(date)").foregroundColor(.gray)
+            HStack{
+                Text(String(format: "%.2f", bmiValue)).font(.largeTitle).fontWeight(.bold)
+                Spacer()
+                Text("\(bmiStatus)").foregroundColor(bmiColor)
             }
-        )
-        .padding()
+            .padding()
+        }
     }
 }
 
